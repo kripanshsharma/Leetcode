@@ -25,7 +25,7 @@ public:
                     while(j<k && nums[j]==nums[j-1]) j++;
                     while(j<k && nums[k]==nums[k+1]) k--;//logic to check repeated pairs
                     //ek element ko ek hi baaar lena varna same st banega
-                }
+                }//TC->O(nlogn + n*n) SC->O(no. of triplets)
             }
         }
         return ans;
