@@ -16,7 +16,7 @@ public:
            }
            i++;
          }
-        nums = currvect;
+         nums = currvect;
       }
      return nums[0];
     }
