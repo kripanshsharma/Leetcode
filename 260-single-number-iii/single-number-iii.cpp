@@ -8,7 +8,6 @@ public:
         vector<int> ans;
         for(auto &it:mp){
             if(it.second==1){
-
                 ans.push_back(it.first);
                 if(ans.size()==2){
                     break;
