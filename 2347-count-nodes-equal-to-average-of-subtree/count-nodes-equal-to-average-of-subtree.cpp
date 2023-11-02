@@ -11,40 +11,27 @@
  */
 class Solution {
 public:
+    int result = 0;
     int averageOfSubtree(TreeNode* root) {
-        int count=0;
-        if(!root) return count;
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty()){
-            TreeNode* temp=q.front();
-            q.pop();
-            queue<TreeNode*> q2;
-            q2.push(temp);
-            int v=0,sum=0;
-            while(!q2.empty()){
-                TreeNode* t=q2.front();
-                q2.pop();
-                sum+=t->val;
-                if(t->left){
-                    q2.push(t->left);
-                }
-                if(t->right){
-                    q2.push(t->right);
-                }
-                v++;
-            }
-            int avg=sum/v;
-            if(temp->left){
-                q.push(temp->left);
-            }
-            if(temp->right){
-                q.push(temp->right);
-            }
-            if(avg==temp->val){
-                count++;
-            }
+        dfs(root);
+        return result;
+    }
+
+    vector<int> dfs(TreeNode* node) {
+        if (!node) {
+            return {0, 0};
         }
-        return count;
+
+        vector<int> left = dfs(node->left);
+        vector<int> right = dfs(node->right);
+
+        int currentSum = left[0] + right[0] + node->val;
+        int currentCount = left[1] + right[1] + 1;
+
+        if (currentSum / currentCount == node->val) {
+            result++;
+        }
+
+        return {currentSum, currentCount};
     }
 };
