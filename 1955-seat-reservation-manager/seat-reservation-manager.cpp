@@ -7,13 +7,13 @@ public:
     }
     
     int reserve() {
-        if(!pq.empty())
-        {
+        // if(!pq.empty())
+        // {
             int seat = pq.top();
             pq.pop();
             return seat;
-        }
-        return -1;
+        // }
+        // return -1;
     }
     
     void unreserve(int seatNumber) {
