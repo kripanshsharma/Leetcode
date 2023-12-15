@@ -1,18 +1,23 @@
 class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
-        unordered_set<string> p;
-        for(auto& e: paths)
-            p.insert(e[1]);
-        for(auto& e: paths)
-            p.erase(e[0]);
-        return *p.begin(); 
+        const int n = paths.size();
+        string s[n], e[n];
+
+        for(int i = 0; i < n; i++) {
+            s[i] = paths[i][0];
+            e[i] = paths[i][1];
+        }
+        sort(s, s+n);
+        sort(e, e+n);
+        int search=0;
+        for (int i = 0; i < n; i++) {
+            string x = e[i];
+            search=lower_bound(s+search, s+n, x)-s;
+
+            if (search == n || s[search] != x) 
+                return move(x);
+        }
+        return NULL; 
     }
 };
-auto init = []()
-{ 
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    return 'c';
-}();
